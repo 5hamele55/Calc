@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>interview</title>
+</head>
+<body>
+    <button id="myBtn" class="btn btn-outline-primary m-2">Open calc</button>
+    <div id="myModal">
+        <button id="closeCalc" class="btn btn-outline-primary m-2">Close calc</button>
+    <div class="content">
+        <h3>Simple Calc</h3>
+        <div class="content-inner d-flex">
+            <div class="content-inner-left">
+                <div id="r1" class="input-container border-blue">
+                    <div><input type="number" id="r1c1"></div>
+                    <div><input type="number" id="r1c2"></div>
+                    <div><input type="number" id="r1c3"></div>
+                </div>
+                <div id="r2" class="input-container border-blue border-top-0">
+                    <div><input type="number" id="r2c1"></div>
+                    <div><input type="number" id="r2c2"></div>
+                    <div><input type="number" id="r2c3"></div>
+                </div>
+                <div id="r3" class="input-container border-blue border-top-0">
+                    <div><input type="number" id="r3c1"></div>
+                    <div><input type="number" id="r3c2"></div>
+                    <div><input type="number" id="r3c3"></div>
+                </div>
+                <div class="checkbox-container d-flex flex-column border-blue border-right-0">
+                    <input type="checkbox" name="box1" id="box1" onclick="changeColor1()">
+                    <input type="checkbox" name="box2" id="box2" onclick="changeColor2()">
+                    <input type="checkbox" name="box3" id="box3" onclick="changeColor3()">
+                </div>
+            </div>
+            <div class="content-inner-right">
+                <div id="sum1" class="sum border-blue border-left-0">0</div>
+                <div id="sum2" class="sum border-blue border-top-0 border-left-0">0</div>
+                <div id="sum3" class="sum border-blue border-top-0 border-left-0">0</div>
+                <div class="results border-blue border-bottom-0">Results</div>
+            </div>
+        </div>
+        <div class="radio-container">
+            <h4>Choose Box</h4>
+            <label><input type="radio" id="radioSum"
+            name="choseBox" value="sum" checked>Sum</label>
+            <label><input type="radio" id="radioMultiply"
+            name="choseBox" value="multiply">Multiply</label>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="main.js"></script>
+</body>
+</html>

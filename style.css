@@ -1,0 +1,102 @@
+* {
+    color: rgb(0, 120, 255);
+}
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.3);
+}
+.content {
+    background: rgb(255, 255, 255);
+    margin: 5% auto;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 50px 50px;
+    width: 60%;
+    position: relative;
+}
+h3 {
+    position: absolute;
+    top: 10%;
+    left: 9%;
+}
+.content-inner {
+    max-width: 85%;
+    margin: 80px auto 10px;
+}
+.border-blue {
+    border: 2px solid rgb(0, 120, 255);
+}
+input[type="number"] {
+    margin: 15px;
+    width: 70%;
+    height: 22px;
+    font-size: 14px;
+    color: rgb(0, 120, 255);
+    border: 2px solid rgb(0, 120, 255);
+}
+.sum {
+    width: 100%;
+    line-height: 22px;
+    padding: 15px;
+    text-align: center;
+}
+.content-inner-left {
+    width: 80%;
+    position: relative;
+}
+.checkbox-container {
+    position: absolute;
+    top: 45px;
+    left: -35px;
+}
+#box1, #box2, #box3 {
+    margin: 10px;
+}
+.content-inner-right {
+    width: 20%;
+    position: relative;
+}
+.results {
+    font-size: 20px;
+    width: 101.75%;
+    position: absolute;
+    top: -32px;
+    left: -2px;
+    text-align: center;
+}
+.input-container {
+    display: flex;
+    justify-content: space-around;
+}
+.radio-container {
+    margin-left: 8%;
+    margin-bottom: 20px;
+}
+label {
+    border: 2px solid rgb(0, 120, 255);
+    padding: 3px;
+    min-width: 100px;
+}
+@media screen and (max-width: 900px) {
+.content {
+    width: 100%;
+}
+}
+@media screen and (max-width: 390px) {
+    .results {
+        width: 103%;
+        font-size: 16px;
+        top: -25px;
+    }
+    .content-inner {
+        max-width: 90%;
+        margin: 80px 0px 10px 30px;
+    }
+}
