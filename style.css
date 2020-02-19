@@ -53,7 +53,7 @@ input[type="number"] {
 }
 .checkbox-container {
     position: absolute;
-    top: 45px;
+    top: 32px;
     left: -35px;
 }
 #box1, #box2, #box3 {
