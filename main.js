@@ -9,67 +9,7 @@ closeCalc.onclick = function () {
 modal.style.display = "none";
 btn.style.display = "block";
 }
-let r1c1 = document.getElementById('r1c1');
-let r1c2 = document.getElementById('r1c2');
-let r1c3 = document.getElementById('r1c3');
-let sum1 = document.getElementById('sum1');
-let r2c1 = document.getElementById('r2c1');
-let r2c2 = document.getElementById('r2c2');
-let r2c3 = document.getElementById('r2c3');
-let sum2 = document.getElementById('sum2');
-let r3c1 = document.getElementById('r3c1');
-let r3c2 = document.getElementById('r3c2');
-let r3c3 = document.getElementById('r3c3');
-let sum3 = document.getElementById('sum3');
-let radioSum = document.getElementById('radioSum');
 
-radioSum.addEventListener('click', (event)=> {
-    if (event.target.checked) updateValue1(),
-    updateValue2(),
-    updateValue3()
-});
-
-let radioMultiply = document.getElementById('radioMultiply');
-
-radioMultiply.addEventListener('click', (event)=> {
-    if (event.target.checked) updateValue1(),
-    updateValue2(),
-    updateValue3()
-});
-
-r1c1.addEventListener('input', updateValue1);
-r1c2.addEventListener('input', updateValue1);
-r1c3.addEventListener('input', updateValue1);
-function updateValue1() {
-    this.value = event.target.value;
-    let action = 'add';
-    if (radioMultiply.checked) {
-        action = 'multiply';
-    }
-    sum1.innerHTML = calc(action, r1c1, r1c2, r1c3);
-    }
-r2c1.addEventListener('input', updateValue2);
-r2c2.addEventListener('input', updateValue2);
-r2c3.addEventListener('input', updateValue2);
-function updateValue2() {
-    this.value = event.target.value;
-    let action = 'add';
-    if (radioMultiply.checked) {
-        action = 'multiply';
-    }
-    sum2.innerHTML = calc(action, r2c1, r2c2, r2c3);
-  }
-r3c1.addEventListener('input', updateValue3);
-r3c2.addEventListener('input', updateValue3);
-r3c3.addEventListener('input', updateValue3);
-function updateValue3() {
-    this.value = event.target.value;
-    let action = 'add';
-    if (radioMultiply.checked) {
-        action = 'multiply';
-    }
-    sum3.innerHTML = calc(action, r3c1, r3c2, r3c3);
-  }
 function changeColor (id) {
     let container = document.getElementById(id);
     let boxButton = event.target;
@@ -79,12 +19,53 @@ function changeColor (id) {
     else {
         container.style.backgroundColor = "white";
     }
+} 
+
+const actionsMap = {
+    'sum': (items = []) => items.reduce((acc, next) => acc + +next.value, 0),
+    'multiply': (items = []) => items.reduce((acc, next) => acc * +next.value, 1)
+    // що означають номера в кінці функції 0 і 1 ?
 }
-function calc(action, n1, n2, n3) {
-    if (action === 'add') {
-            return +n1.value + +n2.value + +n3.value;
-        }
-    if (action === 'multiply') {
-            return +n1.value * +n2.value * +n3.value;
+
+const items = document.querySelectorAll("input[id*=r][id*=c]");
+items.forEach((item) => {
+    item.addEventListener('input', updateVal)
+});
+
+const actionElems = document.querySelectorAll(".calc_action");
+actionElems.forEach((item) => {
+    item.addEventListener('click', updateVal)
+});
+
+function updateVal({target} = {}) {
+    if (target.type === 'number') {
+        const [id_prefix] = target.id.split('_');
+        // чому id_prefix записаний в []?
+        const rowItemsElems = Array.from(items).filter(({id}) => id.includes(id_prefix));
+        const actionElem = document.querySelector(".calc_action:checked");
+        const result = actionsMap[actionElem.value](rowItemsElems);
+        document.getElementById(`${id_prefix}_sum`).innerHTML = result;
+        
+        console.log(target);
+        return;
     }
- }
+
+    if (target.type === 'radio') {
+        const mapper = new Map();
+        const arrElems = Array.from(items);
+
+        arrElems.forEach((item) => {
+            const [id_prefix] = item.id.split('_');
+            if (!mapper.has(id_prefix)) {
+                mapper.set(id_prefix)  
+            }
+        })
+
+        mapper.forEach((_, key) => {
+            const columnElems = arrElems.filter(({id}) => id.includes(key));
+            const result = actionsMap[target.value](columnElems);
+            document.getElementById(`${key}_sum`).innerHTML = result;
+        });
+        return;
+    }
+} 
